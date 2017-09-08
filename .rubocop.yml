@@ -1,0 +1,44 @@
+---
+AllCops:
+  DisplayCopNames:    true
+  DisplayStyleGuide:  true
+  StyleGuideCopsOnly: true
+  TargetRubyVersion:  2.3
+  Exclude:
+    - lib/tasks/*.rake
+
+Bundler/DuplicatedGem:
+  Enabled: false
+
+Style/CaseEquality:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/Lambda:
+  Exclude:
+    - spec/**/*.rb
+
+Style/RescueModified:
+  Exclude:
+    - spec/**/*.rb
+
+Style/Semicolon:
+  Exclude:
+    - spec/**/*.rb
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
