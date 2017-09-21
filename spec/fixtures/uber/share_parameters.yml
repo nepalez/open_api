@@ -5,34 +5,34 @@ info:
   title: Uber API
   description: Move your app forward with the Uber API
   version: 1.0.0
-servers:
-- url: https://api.uber.com/v1
 paths:
   "/products":
-    parameters:
-      - name: latitude
-        in: query
-        description: Latitude component of location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: longitude
-        in: query
-        description: Longitude component of location.
-        required: true
-        schema:
-          type: number
-          format: double
     get:
       summary: Product Types
       description: The Products endpoint returns information about the Uber products
         offered at a given location. The response includes the display name and other
         details about each product, and lists the products in the proper display order.
+      servers:
+        - url: https://api.uber.com/v1
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude component of location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: longitude
+          in: query
+          description: Longitude component of location.
+          required: true
+          schema:
+            type: number
+            format: double
       security:
-      - apikey: []
+        - apikey: []
       tags:
-      - Products
+        - Products
       responses:
         '200':
           description: An array of products
@@ -85,37 +85,39 @@ paths:
         currency code for situations requiring currency conversion. When surge is
         active for a particular product, its surge_multiplier will be greater than
         1, but the price estimate already factors in this multiplier.
+      servers:
+        - url: https://api.uber.com/v1
       parameters:
-      - name: start_latitude
-        in: query
-        description: Latitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: start_longitude
-        in: query
-        description: Longitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: end_latitude
-        in: query
-        description: Latitude component of end location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: end_longitude
-        in: query
-        description: Longitude component of end location.
-        required: true
-        schema:
-          type: number
-          format: double
+        - name: start_latitude
+          in: query
+          description: Latitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: start_longitude
+          in: query
+          description: Longitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_latitude
+          in: query
+          description: Latitude component of end location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_longitude
+          in: query
+          description: Longitude component of end location.
+          required: true
+          schema:
+            type: number
+            format: double
       tags:
-      - Estimates
+        - Estimates
       responses:
         '200':
           description: An array of price estimates by product
@@ -173,35 +175,37 @@ paths:
         at a given location, with the responses expressed as integers in seconds.
         We recommend that this endpoint be called every minute to provide the most
         accurate, up-to-date ETAs.
+      servers:
+        - url: https://api.uber.com/v1
       parameters:
-      - name: start_latitude
-        in: query
-        description: Latitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: start_longitude
-        in: query
-        description: Longitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: customer_uuid
-        in: query
-        schema:
-          type: string
-          format: uuid
-        description: Unique customer identifier to be used for experience customization.
-      - name: product_id
-        in: query
-        schema:
-          type: string
-        description: Unique identifier representing a specific product for a given
-          latitude & longitude.
+        - name: start_latitude
+          in: query
+          description: Latitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: start_longitude
+          in: query
+          description: Longitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: customer_uuid
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Unique customer identifier to be used for experience customization.
+        - name: product_id
+          in: query
+          schema:
+            type: string
+          description: Unique identifier representing a specific product for a given
+            latitude & longitude.
       tags:
-      - Estimates
+        - Estimates
       responses:
         '200':
           description: An array of products
@@ -242,15 +246,15 @@ paths:
                   fields:
                     type: string
   "/me":
-    servers:
-      - url: https://personal.api.uber.com/v1
-        description: Server for personal data
     get:
       summary: User Profile
       description: The User Profile endpoint returns information about the Uber user
         that has authorized with the application.
       tags:
-      - User
+        - User
+      servers:
+        - url: https://personal.api.uber.com/v1
+          description: Server for personal data
       responses:
         '200':
           description: Profile information for a user
@@ -294,22 +298,24 @@ paths:
         about which products were requested.<br><br>The history array in the response
         will have a maximum length based on the limit parameter. The response value
         count may exceed limit, therefore subsequent API requests may be necessary.
+      servers:
+        - url: https://api.uber.com/v1
       parameters:
-      - name: offset
-        in: query
-        schema:
-          type: integer
-          format: int32
-        description: Offset the list of returned results by this amount. Default is
-          zero.
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          format: int32
-        description: Number of items to retrieve. Default is 5, maximum is 100.
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            format: int32
+          description: Offset the list of returned results by this amount. Default is
+            zero.
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            format: int32
+          description: Number of items to retrieve. Default is 5, maximum is 100.
       tags:
-      - User
+        - User
       responses:
         '200':
           description: History information for the given user

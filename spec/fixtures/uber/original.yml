@@ -14,21 +14,6 @@ paths:
     get:
       summary: Product Types
       description: The Products endpoint returns information about the Uber products offered at a given location. The response includes the display name and other details about each product, and lists the products in the proper display order.
-      parameters:
-        - name: latitude
-          in: query
-          description: Latitude component of location.
-          required: true
-          schema:
-            type: number
-            format: double
-        - name: longitude
-          in: query
-          description: Longitude component of location.
-          required: true
-          schema:
-            type: number
-            format: double
       security: 
         - apikey: []
       tags: 
@@ -46,6 +31,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    parameters:
+      - $ref: '#/components/parameters/latitude'
+      - $ref: '#/components/parameters/longitude'
   /estimates/price:
     get:
       summary: Price Estimates
@@ -203,6 +191,23 @@ components:
       type: apiKey
       name: server_token
       in: query
+  parameters:
+    latitude:
+      name: latitude
+      in: query
+      description: Latitude component of location.
+      required: true
+      schema:
+        type: number
+        format: double
+    longitude:
+      name: longitude
+      in: query
+      description: Longitude component of location.
+      required: true
+      schema:
+        type: number
+        format: double
   schemas:
     Product:
       properties:
