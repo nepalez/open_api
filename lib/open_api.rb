@@ -1,14 +1,22 @@
-require "yaml"
 require "dry-initializer"
+require "json"
+require "json-schema"
+require "yaml"
+require "uri"
 
 # Specification-based API
-#
-# @example
-#   API = OpenAPI["config/open_api.yml"]
-#
-#   API[:find_user].check_request(params)
-#   API[:find_user].check_response(body)
-#   API[:find_user].to_h
-#
 class OpenAPI
+  require_relative "open_api/loaders"
+
+  extend Loaders
+
+  # @!attribute [r] schema
+  # @return [Hash] the original Open API schema
+  attr_reader :schema
+
+  private
+
+  def initialize(schema)
+    @schema = schema
+  end
 end
