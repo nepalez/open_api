@@ -144,6 +144,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   /me:
+    servers:
+      - url: https://personal.api.uber.com/v1
+        description: Server for personal data
     get:
       summary: User Profile
       description: The User Profile endpoint returns information about the Uber user that has authorized with the application.

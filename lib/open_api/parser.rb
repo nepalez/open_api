@@ -9,6 +9,7 @@ class OpenAPI
 
     require_relative "parser/handler"
     require_relative "parser/deref"
+    require_relative "parser/share_servers"
 
     Error = Class.new(StandardError)
   end
