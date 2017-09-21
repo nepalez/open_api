@@ -3,7 +3,7 @@ require "rspec/its"
 
 begin
   require "pry"
-rescue
+rescue StandardError
   nil
 end
 
