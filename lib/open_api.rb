@@ -7,6 +7,7 @@ require "uri"
 # Specification-based API
 class OpenAPI
   require_relative "open_api/loaders"
+  require_relative "open_api/parser"
 
   extend Loaders
 
