@@ -1,7 +1,7 @@
-RSpec.describe OpenAPI::Parser::ShareServers do
+RSpec.describe OpenAPI::Mapper::ShareServers do
   subject { described_class.call source }
 
-  shared_examples :successful_handler do |example|
+  shared_examples :successful_mapper do |example|
     let(:source) { yaml_fixture_file "#{example}/share_parameters.yml" }
     let(:target) { yaml_fixture_file "#{example}/share_servers.yml" }
 
@@ -10,7 +10,7 @@ RSpec.describe OpenAPI::Parser::ShareServers do
     end
   end
 
-  it_behaves_like :successful_handler, "petstore"
-  it_behaves_like :successful_handler, "uber"
-  it_behaves_like :successful_handler, "complex"
+  it_behaves_like :successful_mapper, "petstore"
+  it_behaves_like :successful_mapper, "uber"
+  it_behaves_like :successful_mapper, "complex"
 end

@@ -3,13 +3,13 @@ class OpenAPI
   # Parses the original schema and denornalizes all shared definitions
   # @private
   #
-  module Parser
+  module Mapper
     module_function
 
-    require_relative "parser/base"
-    require_relative "parser/deref"
-    require_relative "parser/share_parameters"
-    require_relative "parser/share_servers"
+    require_relative "mapper/base"
+    require_relative "mapper/deref"
+    require_relative "mapper/share_parameters"
+    require_relative "mapper/share_servers"
 
     Error   = Class.new(StandardError)
     Mappers = [Deref, ShareParameters, ShareServers].freeze

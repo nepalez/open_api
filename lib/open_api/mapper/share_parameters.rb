@@ -1,4 +1,4 @@
-module OpenAPI::Parser
+module OpenAPI::Mapper
   #
   # Moves parameters from path items to operations
   # @private
