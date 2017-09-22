@@ -8,6 +8,7 @@ require "uri"
 class OpenAPI
   require_relative "open_api/loader"
   require_relative "open_api/parser"
+  require_relative "open_api/models"
 
   extend Loader # load_yml
 
