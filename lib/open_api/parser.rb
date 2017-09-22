@@ -7,7 +7,7 @@ class OpenAPI
   module Parser
     module_function
 
-    require_relative "parser/handler"
+    require_relative "parser/mapper"
     require_relative "parser/deref"
     require_relative "parser/share_servers"
     require_relative "parser/share_parameters"

@@ -4,9 +4,8 @@ module OpenAPI::Parser
   # Removes servers from both the root, and path items
   # @private
   #
-  class ShareServers
-    extend Handler
-    param  :source, method(:Hash)
+  class ShareServers < Mapper
+    param :source, method(:Hash)
 
     def call
       source.merge("paths" => new_paths).reject { |key| key == "servers" }

@@ -5,8 +5,7 @@ module OpenAPI::Parser
   # that are referred via security requirements.
   # @private
   #
-  class Deref
-    extend Handler
+  class Deref < Mapper
     param :source, method(:Hash)
 
     def call

@@ -3,9 +3,8 @@ module OpenAPI::Parser
   # Moves parameters from path items to operations
   # @private
   #
-  class ShareParameters
-    extend Handler
-    param  :source, method(:Hash)
+  class ShareParameters < Mapper
+    param :source, method(:Hash)
 
     def call
       source.merge("paths" => new_paths)
