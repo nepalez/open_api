@@ -9,10 +9,11 @@ class OpenAPI
     require_relative "mapper/base"
     require_relative "mapper/deref"
     require_relative "mapper/share_parameters"
+    require_relative "mapper/share_security"
     require_relative "mapper/share_servers"
 
     Error   = Class.new(StandardError)
-    Mappers = [Deref, ShareParameters, ShareServers].freeze
+    Mappers = [Deref, ShareParameters, ShareSecurity, ShareServers].freeze
 
     def self.call(original)
       Mappers.inject(original) { |obj, mapper| mapper.call obj }

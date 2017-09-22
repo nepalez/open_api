@@ -93,8 +93,8 @@ paths:
       description: Creates a new pet in the store.  Duplicates are allowed
       operationId: addPet
       security:
-        petstore_auth:
-        - write:pets
+        - petstore_auth:
+          - write:pets
       requestBody:
         description: Pet to add to the store
         required: true
@@ -193,8 +193,8 @@ paths:
       description: deletes a single pet based on the ID supplied
       operationId: deletePet
       security:
-        petstore_auth:
-        - write:pets
+        - petstore_auth:
+          - write:pets
       parameters:
       - name: id
         in: path
@@ -262,9 +262,9 @@ components:
       description: Open Id Connect Saple
       openIdConnectUrl: http://example.org/api/open_id
 security:
-  jwt_bearer: []
-  petstore_auth:
-  - read:pets
+  - jwt_bearer: []
+  - petstore_auth:
+      - read:pets
 tags:
 - name: pet
   description: Pets operations

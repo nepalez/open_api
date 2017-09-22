@@ -26,10 +26,13 @@ module OpenAPI::Mapper
         path_data = Hash(path_data)
         default   = { "servers" => path_data.fetch("servers", @servers) }
         obj[path] = path_data.each_with_object({}) do |(verb, data), o|
-          next if verb == "servers"
-          o[verb] = VERBS.include?(verb) ? default.merge(data) : data
+          o[verb] = new_data(verb, data, default) unless verb == "servers"
         end
       end
+    end
+
+    def new_data(verb, original, default)
+      VERBS.include?(verb) ? default.merge(original) : original
     end
   end
 end
