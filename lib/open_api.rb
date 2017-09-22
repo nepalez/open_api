@@ -6,10 +6,10 @@ require "uri"
 
 # Specification-based API
 class OpenAPI
-  require_relative "open_api/loaders"
+  require_relative "open_api/loader"
   require_relative "open_api/parser"
 
-  extend Loaders
+  extend Loader # load_yml
 
   # @!attribute [r] schema
   # @return [Hash] the original Open API schema
