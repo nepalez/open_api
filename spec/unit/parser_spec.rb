@@ -1,9 +1,9 @@
-RSpec.describe OpenAPI::Parser::Deref do
+RSpec.describe OpenAPI::Parser do
   subject { described_class.call source }
 
   shared_examples :successful_handler do |example|
     let(:source) { yaml_fixture_file "#{example}/original.yml" }
-    let(:target) { yaml_fixture_file "#{example}/deref.yml" }
+    let(:target) { yaml_fixture_file "#{example}/share_servers.yml" }
 
     it "processes #{example} example" do
       expect(subject).to eq target

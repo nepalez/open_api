@@ -3,7 +3,7 @@ module OpenAPI::Parser
   # Moves parameters from path items to operations
   # @private
   #
-  class ShareParameters < Mapper
+  class ShareParameters < Base
     param :source, method(:Hash)
 
     def call

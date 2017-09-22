@@ -4,7 +4,7 @@ module OpenAPI::Parser
   # Removes servers from both the root, and path items
   # @private
   #
-  class ShareServers < Mapper
+  class ShareServers < Base
     param :source, method(:Hash)
 
     def call

@@ -1,10 +1,11 @@
-# original schema after dereference
 ---
 openapi: 3.0.0
 info:
   title: Uber API
   description: Move your app forward with the Uber API
   version: 1.0.0
+servers:
+  - url: https://api.uber.com/v1
 paths:
   "/products":
     get:
@@ -12,8 +13,6 @@ paths:
       description: The Products endpoint returns information about the Uber products
         offered at a given location. The response includes the display name and other
         details about each product, and lists the products in the proper display order.
-      servers:
-        - url: https://api.uber.com/v1
       parameters:
         - name: latitude
           in: query
@@ -85,8 +84,6 @@ paths:
         currency code for situations requiring currency conversion. When surge is
         active for a particular product, its surge_multiplier will be greater than
         1, but the price estimate already factors in this multiplier.
-      servers:
-        - url: https://api.uber.com/v1
       parameters:
         - name: start_latitude
           in: query
@@ -175,8 +172,6 @@ paths:
         at a given location, with the responses expressed as integers in seconds.
         We recommend that this endpoint be called every minute to provide the most
         accurate, up-to-date ETAs.
-      servers:
-        - url: https://api.uber.com/v1
       parameters:
         - name: start_latitude
           in: query
@@ -246,15 +241,15 @@ paths:
                   fields:
                     type: string
   "/me":
+    servers:
+      - url: https://personal.api.uber.com/v1
+        description: Server for personal data
     get:
       summary: User Profile
       description: The User Profile endpoint returns information about the Uber user
         that has authorized with the application.
       tags:
         - User
-      servers:
-        - url: https://personal.api.uber.com/v1
-          description: Server for personal data
       responses:
         '200':
           description: Profile information for a user
@@ -298,8 +293,6 @@ paths:
         about which products were requested.<br><br>The history array in the response
         will have a maximum length based on the limit parameter. The response value
         count may exceed limit, therefore subsequent API requests may be necessary.
-      servers:
-        - url: https://api.uber.com/v1
       parameters:
         - name: offset
           in: query

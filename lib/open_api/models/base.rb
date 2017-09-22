@@ -1,4 +1,4 @@
-class OpenAPI::Models
+module OpenAPI::Models
   #
   # Base class for models describing part of a schema
   # @abstract

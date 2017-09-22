@@ -1,4 +1,3 @@
-# original schema after dereference
 ---
 openapi: 3.0.0
 info:
@@ -7,21 +6,6 @@ info:
   version: 1.0.0
 paths:
   "/products":
-    parameters:
-      - name: latitude
-        in: query
-        description: Latitude component of location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: longitude
-        in: query
-        description: Longitude component of location.
-        required: true
-        schema:
-          type: number
-          format: double
     get:
       summary: Product Types
       description: The Products endpoint returns information about the Uber products
@@ -29,6 +13,21 @@ paths:
         details about each product, and lists the products in the proper display order.
       servers:
         - url: https://api.uber.com/v1
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude component of location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: longitude
+          in: query
+          description: Longitude component of location.
+          required: true
+          schema:
+            type: number
+            format: double
       security:
         - apikey: []
       tags:
@@ -88,36 +87,36 @@ paths:
       servers:
         - url: https://api.uber.com/v1
       parameters:
-      - name: start_latitude
-        in: query
-        description: Latitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: start_longitude
-        in: query
-        description: Longitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: end_latitude
-        in: query
-        description: Latitude component of end location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: end_longitude
-        in: query
-        description: Longitude component of end location.
-        required: true
-        schema:
-          type: number
-          format: double
+        - name: start_latitude
+          in: query
+          description: Latitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: start_longitude
+          in: query
+          description: Longitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_latitude
+          in: query
+          description: Latitude component of end location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_longitude
+          in: query
+          description: Longitude component of end location.
+          required: true
+          schema:
+            type: number
+            format: double
       tags:
-      - Estimates
+        - Estimates
       responses:
         '200':
           description: An array of price estimates by product
@@ -178,34 +177,34 @@ paths:
       servers:
         - url: https://api.uber.com/v1
       parameters:
-      - name: start_latitude
-        in: query
-        description: Latitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: start_longitude
-        in: query
-        description: Longitude component of start location.
-        required: true
-        schema:
-          type: number
-          format: double
-      - name: customer_uuid
-        in: query
-        schema:
-          type: string
-          format: uuid
-        description: Unique customer identifier to be used for experience customization.
-      - name: product_id
-        in: query
-        schema:
-          type: string
-        description: Unique identifier representing a specific product for a given
-          latitude & longitude.
+        - name: start_latitude
+          in: query
+          description: Latitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: start_longitude
+          in: query
+          description: Longitude component of start location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: customer_uuid
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Unique customer identifier to be used for experience customization.
+        - name: product_id
+          in: query
+          schema:
+            type: string
+          description: Unique identifier representing a specific product for a given
+            latitude & longitude.
       tags:
-      - Estimates
+        - Estimates
       responses:
         '200':
           description: An array of products
@@ -301,21 +300,21 @@ paths:
       servers:
         - url: https://api.uber.com/v1
       parameters:
-      - name: offset
-        in: query
-        schema:
-          type: integer
-          format: int32
-        description: Offset the list of returned results by this amount. Default is
-          zero.
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          format: int32
-        description: Number of items to retrieve. Default is 5, maximum is 100.
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            format: int32
+          description: Offset the list of returned results by this amount. Default is
+            zero.
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            format: int32
+          description: Number of items to retrieve. Default is 5, maximum is 100.
       tags:
-      - User
+        - User
       responses:
         '200':
           description: History information for the given user

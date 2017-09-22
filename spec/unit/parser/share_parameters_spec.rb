@@ -1,8 +1,8 @@
-RSpec.describe OpenAPI::Parser::ShareParameters, :focus do
+RSpec.describe OpenAPI::Parser::ShareParameters do
   subject { described_class.call source }
 
   shared_examples :successful_handler do |example|
-    let(:source) { yaml_fixture_file "#{example}/share_servers.yml" }
+    let(:source) { yaml_fixture_file "#{example}/deref.yml" }
     let(:target) { yaml_fixture_file "#{example}/share_parameters.yml" }
 
     it "processes #{example} example" do
