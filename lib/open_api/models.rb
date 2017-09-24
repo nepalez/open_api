@@ -7,5 +7,6 @@ class OpenAPI
     require_relative "models/error"
     require_relative "models/base"
     require_relative "models/media_type"
+    require_relative "models/media_types"
   end
 end
