@@ -10,5 +10,6 @@ class OpenAPI
     require_relative "models/media_types"
     require_relative "models/request_body"
     require_relative "models/location"
+    require_relative "models/style"
   end
 end
