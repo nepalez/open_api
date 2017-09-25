@@ -1,108 +1,97 @@
 RSpec.describe OpenAPI::Models::Style do
-  subject { described_class.new(object, source) }
+  let(:style)     { described_class.new(object, source) }
+  let(:object)    { double to_s: parameter, location: location }
+  let(:parameter) { "path parameter 'id' of GET /users/:id" }
+  let(:source)    { "matrix" }
+  let(:location)  { OpenAPI::Models::Location.new(double, loc) }
+  let(:loc)       { "path" }
 
-  let(:object) { double to_s: "GET /users" }
-  let(:source) { "matrix" }
+  subject { style }
 
   it "refers to the described subject" do
     expect(subject.subject).to eq object
   end
 
-  context "matrix" do
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_path }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_query }
+  context "default for path subject" do
+    let(:source) { nil }
+    let(:loc)    { "path" }
+    it { is_expected.to eq "simple" }
+  end
+
+  context "default for query subject" do
+    let(:source) { nil }
+    let(:loc)    { "query" }
+    it { is_expected.to eq "form" }
+  end
+
+  context "default for header subject" do
+    let(:source) { nil }
+    let(:loc)    { "header" }
+    it { is_expected.to eq "simple" }
+  end
+
+  context "default for cookie subject" do
+    let(:source) { nil }
+    let(:loc)    { "cookie" }
+    it { is_expected.to eq "form" }
   end
 
   context "matrix" do
-    let(:source) { "label" }
+    let(:source)  { "matrix" }
+    let(:loc)     { "path" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[primitive array object] }
+  end
 
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_path }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_query }
+  context "label" do
+    let(:source)  { "label" }
+    let(:loc)     { "path" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[primitive array object] }
   end
 
   context "form" do
-    let(:source) { "form" }
-
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_cookie }
-    it { is_expected.to be_query }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_path }
+    let(:source)  { "form" }
+    let(:loc)     { "query" }
+    it { is_expected.to be_explode }
+    its(:types)   { is_expected.to match_array %w[primitive array object] }
   end
 
   context "simple" do
-    let(:source) { "simple" }
-
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_header }
-    it { is_expected.to be_path }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_query }
+    let(:source)  { "simple" }
+    let(:loc)     { "path" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[array] }
   end
 
   context "spaceDelimited" do
-    let(:source) { "spaceDelimited" }
-
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_query }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_path }
+    let(:source)  { "spaceDelimited" }
+    let(:loc)     { "query" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[array] }
   end
 
   context "pipeDelimited" do
-    let(:source) { "spaceDelimited" }
-
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_query }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_path }
+    let(:source)  { "pipeDelimited" }
+    let(:loc)     { "query" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[array] }
   end
 
   context "deepObject" do
-    let(:source) { "deepObject" }
-
-    it { is_expected.to eq source }
-    it { is_expected.to be_defined }
-    it { is_expected.to be_query }
-    it { is_expected.not_to be_cookie }
-    it { is_expected.not_to be_header }
-    it { is_expected.not_to be_path }
+    let(:source)  { "deepObject" }
+    let(:loc)     { "query" }
+    it { is_expected.not_to be_explode }
+    its(:types)   { is_expected.to match_array %w[object] }
   end
 
-  context "n/a" do
-    let(:source) { "n/a" }
+  context "source inconsistent to subject location" do
+    let(:loc)    { "cookie" }
+    let(:source) { "matrix" } # for path only
 
-    it { is_expected.to eq source }
-    it { is_expected.not_to be_defined }
-    it { is_expected.to be_query }
-    it { is_expected.to be_cookie }
-    it { is_expected.to be_header }
-    it { is_expected.to be_path }
-  end
-
-  context "nil" do
-    let(:source) { nil }
-
-    it { is_expected.to eq "n/a" }
-    it { is_expected.not_to be_defined }
-    it { is_expected.to be_query }
-    it { is_expected.to be_cookie }
-    it { is_expected.to be_header }
-    it { is_expected.to be_path }
+    it "raises exception" do
+      expect { subject }.to raise_error(ArgumentError, /matrix/)
+    end
   end
 
   context "unknown source" do

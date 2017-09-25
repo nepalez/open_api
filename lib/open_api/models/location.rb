@@ -7,6 +7,10 @@ module OpenAPI::Models
   class Location < String
     attr_reader :subject
 
+    def self.config
+      @config ||= YAML.load_file "config/locations.yml"
+    end
+
     def query?
       self == "query"
     end
@@ -24,24 +28,31 @@ module OpenAPI::Models
     end
 
     # @see https://swagger.io/specification/#parameterIn
-    alias required? path?
+    def required?
+      @config["required"]
+    end
 
     # @see https://swagger.io/specification/#securitySchemeIn
     def security?
-      !path?
+      @config["security"]
+    end
+
+    def styles
+      @config["styles"]
+    end
+
+    def default_style
+      @config["default"]
     end
 
     private
 
-    LIST = %w[query path header cookie]
-
     def initialize(subject, source)
-      unless LIST.include? source
+      @subject = subject
+      @config ||= self.class.config.fetch(source.to_s) do
         raise Error, "invalid location '#{source}' for #{subject}"
       end
-
       super(source)
-      @subject = subject
     end
   end
 end

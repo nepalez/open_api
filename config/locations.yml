@@ -1,0 +1,38 @@
+# Locations (in) for parameters
+# @see
+#   https://swagger.io/specification/#parameterIn
+#   https://swagger.io/specification/#style-values-52
+---
+path:
+  styles:
+  - label
+  - matrix
+  - simple
+  default: simple
+  required: true
+  security: false
+query:
+  styles:
+  - deepObject
+  - form
+  - pipeDelimited
+  - spaceDelimited
+  default: form
+  required: false
+  security: true
+cookie:
+  styles:
+  - form
+  default: form
+  required: false
+  security: true
+header:
+  styles:
+  - simple
+  default: simple
+  required: false
+  security: true
+  ignore: # https://swagger.io/specification/#parameterName
+  - Accept
+  - Content-Type
+  - Authorization

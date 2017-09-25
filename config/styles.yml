@@ -1,0 +1,37 @@
+# Definitions for style values
+# @see https://swagger.io/specification/#style-values-52
+---
+matrix:
+  types:
+  - primitive
+  - array
+  - object
+  explode: false
+label:
+  types:
+  - primitive
+  - array
+  - object
+  explode: false
+form:
+  types:
+  - primitive
+  - array
+  - object
+  explode: true
+simple:
+  types:
+  - array
+  explode: false
+spaceDelimited:
+  types:
+  - array
+  explode: false
+pipeDelimited:
+  types:
+  - array
+  explode: false
+deepObject:
+  types:
+  - object
+  explode: false
