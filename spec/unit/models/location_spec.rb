@@ -1,5 +1,5 @@
 RSpec.describe OpenAPI::Models::Location do
-  let(:location) { described_class.new(object, source) }
+  let(:location) { described_class.new(source, object) }
   let(:source)   { "query" }
   let(:object)   { double to_s: "GET /users" }
 

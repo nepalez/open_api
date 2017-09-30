@@ -45,9 +45,13 @@ module OpenAPI::Models
       @config["default"]
     end
 
+    def self.call(source, subject)
+      new(source, subject)
+    end
+
     private
 
-    def initialize(subject, source)
+    def initialize(source, subject)
       @subject = subject
       @config ||= self.class.config.fetch(source.to_s) do
         raise Error, "invalid location '#{source}' for #{subject}"

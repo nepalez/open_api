@@ -4,9 +4,11 @@ module OpenAPI::Models
   # @private
   #
   class RequestBody < Base
+    BOOLEAN = ->(v) { v.to_s == "true" }
+
     param  :subject # described by the media type
-    option :content,  ->(v, body) { MediaTypes.new(body, v) }
-    option :required, ->(v) { v.to_s == "true" }, default: -> { false }
+    option :content,  MediaTypes
+    option :required, BOOLEAN, default: -> { false }
 
     def to_s
       "request body of #{subject}"

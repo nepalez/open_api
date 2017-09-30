@@ -15,9 +15,13 @@ module OpenAPI::Models
       @explode
     end
 
+    def self.call(source, subject)
+      new(source, subject)
+    end
+
     private
 
-    def initialize(subject, source)
+    def initialize(source, subject)
       location = subject.location
       source ||= location.default_style
 

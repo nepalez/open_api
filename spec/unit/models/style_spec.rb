@@ -1,9 +1,9 @@
 RSpec.describe OpenAPI::Models::Style do
-  let(:style)     { described_class.new(object, source) }
+  let(:style)     { described_class.new(source, object) }
   let(:object)    { double to_s: parameter, location: location }
   let(:parameter) { "path parameter 'id' of GET /users/:id" }
   let(:source)    { "matrix" }
-  let(:location)  { OpenAPI::Models::Location.new(double, loc) }
+  let(:location)  { OpenAPI::Models::Location.new(loc, double) }
   let(:loc)       { "path" }
 
   subject { style }

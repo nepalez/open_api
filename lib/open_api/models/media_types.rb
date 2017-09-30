@@ -24,11 +24,15 @@ module OpenAPI::Models
       self[value].schema
     end
 
+    def self.call(source, subject)
+      new(source, subject)
+    end
+
     private
 
-    def initialize(subject, data)
+    def initialize(source, subject)
       @subject = subject
-      @data = Hash(data).each_with_object({}) do |(type, item), obj|
+      @data = Hash(source).each_with_object({}) do |(type, item), obj|
         obj[type.to_s] = MediaType.new(subject, type, item)
       end
     end

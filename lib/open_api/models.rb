@@ -11,5 +11,6 @@ class OpenAPI
     require_relative "models/request_body"
     require_relative "models/location"
     require_relative "models/style"
+    require_relative "models/parameter"
   end
 end
