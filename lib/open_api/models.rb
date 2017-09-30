@@ -12,5 +12,6 @@ class OpenAPI
     require_relative "models/location"
     require_relative "models/style"
     require_relative "models/parameter"
+    require_relative "models/parameters"
   end
 end
