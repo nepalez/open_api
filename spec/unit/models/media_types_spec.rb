@@ -1,5 +1,5 @@
 RSpec.describe OpenAPI::Models::MediaTypes do
-  let(:data)   { yaml_fixture_file("uber/share_servers.yml").dig(*path) }
+  let(:data)   { yaml_fixture_file("uber/mapped.yml").dig(*path) }
   let(:path)   { %w[paths /me get responses 200 content] }
   let(:object) { double to_s: "parameter 'user'" }
   let(:types)  { described_class.new data, object }

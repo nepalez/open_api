@@ -1,7 +1,7 @@
 RSpec.describe OpenAPI::Models::Parameter do
   let(:param)  { described_class.new parent, source }
   let(:parent) { double }
-  let(:data)   { yaml_fixture_file("petstore/share_servers.yml") }
+  let(:data)   { yaml_fixture_file("petstore/mapped.yml") }
   let(:source) { data.dig("paths", "/pets", "get", "parameters").last }
 
   describe ".new" do

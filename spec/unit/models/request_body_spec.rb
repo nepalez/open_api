@@ -1,6 +1,6 @@
 RSpec.describe OpenAPI::Models::RequestBody do
   let(:object) { double to_s: "POST /pets" }
-  let(:data)   { yaml_fixture_file("petstore/share_servers.yml").dig(*path) }
+  let(:data)   { yaml_fixture_file("petstore/mapped.yml").dig(*path) }
   let(:path)   { %w[paths /pets post requestBody] }
 
   let(:body) { described_class.new object, data }

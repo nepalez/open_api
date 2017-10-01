@@ -3,7 +3,7 @@ RSpec.describe OpenAPI::Mapper do
 
   shared_examples :successful_mapper do |example|
     let(:source) { yaml_fixture_file "#{example}/original.yml" }
-    let(:target) { yaml_fixture_file "#{example}/share_servers.yml" }
+    let(:target) { yaml_fixture_file "#{example}/mapped.yml" }
 
     it "processes #{example} example" do
       expect(subject).to eq target
