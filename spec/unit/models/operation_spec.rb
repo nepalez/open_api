@@ -6,10 +6,6 @@ RSpec.describe OpenAPI::Models::Operation do
   describe ".new" do
     subject { operation }
 
-    it "preserves <parsed> schema" do
-      expect(subject.schema).to eq source
-    end
-
     it "extracts id" do
       expect(subject.id).to eq "findPets"
     end

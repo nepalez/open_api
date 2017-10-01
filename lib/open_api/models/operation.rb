@@ -1,7 +1,6 @@
 module OpenAPI::Models
   # @private
   class Operation < Base
-    param :schema
     param :path
     param :verb
     # extracted from [#schema] for a further usage
@@ -13,7 +12,7 @@ module OpenAPI::Models
     def self.new(schema, path, verb)
       data = schema.dig("paths", path, verb)
       raise Error, "undefined operation '#{verb.upcase} #{path}'" unless data
-      super(schema, path, verb, data)
+      super(path, verb, data)
     end
   end
 end
