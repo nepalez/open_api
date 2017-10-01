@@ -4,20 +4,22 @@ module OpenAPI::Models
   # @private
   #
   class RequestBody < Base
-    BOOLEAN = ->(v) { v.to_s == "true" }
-
-    param  :subject # described by the media type
+    param  :parent
     option :content,  MediaTypes
-    option :required, BOOLEAN, default: -> { false }
+    option :required, Boolean, default: -> { false }
 
     def to_s
-      "request body of #{subject}"
+      "request body of #{parent}"
     end
     alias to_str  to_s
     alias inspect to_s
 
     def schema(format)
       content.schema(format)
+    end
+
+    def self.call(data, parent)
+      new(parent, data)
     end
   end
 end

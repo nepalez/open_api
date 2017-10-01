@@ -8,22 +8,22 @@ module OpenAPI::Models
 
     include Enumerable
 
-    attr_reader :operation
+    attr_reader :parent
 
     def each
       block_given? ? @list.each { |item| yield(item) } : @list.to_enum
     end
 
-    def self.call(data, operation)
-      new(data, operation)
+    def self.call(data, parent)
+      new(data, parent)
     end
 
     private
 
-    def initialize(data, operation)
-      @operation = operation
+    def initialize(data, parent)
+      @parent = parent
       @list = data.map do |item|
-        Parameter === item ? item : Parameter.new(operation, item)
+        Parameter === item ? item : Parameter.new(parent, item)
       end
     end
   end

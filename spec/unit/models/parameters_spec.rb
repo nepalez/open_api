@@ -8,7 +8,7 @@ RSpec.describe OpenAPI::Models::Parameters do
     subject { list }
 
     it "sets reference to the <parent> operation" do
-      expect(subject.operation).to eq parent
+      expect(subject.parent).to eq parent
     end
   end
 

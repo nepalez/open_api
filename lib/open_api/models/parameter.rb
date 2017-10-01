@@ -4,18 +4,16 @@ module OpenAPI::Models
   # @private
   #
   class Parameter < Base
-    BOOLEAN = proc { |value| value.to_s == "true" }
-
-    param  :operation
+    param  :parent
     option :name,       proc(&:to_s)
     option :in,         Location,      as: :location
-    option :deprecated, BOOLEAN,       default: -> { false }
-    option :required,   BOOLEAN,       optional: true, reader: :private
+    option :deprecated, Boolean,       default: -> { false }
+    option :required,   Boolean,       optional: true, reader: :private
     option :content,    MediaTypes,    optional: true
     option :schema,     method(:Hash), optional: true
     option :style,      Style,         optional: true
     option :allowEmptyValue,           optional: true,
-                                       type:     BOOLEAN,
+                                       type:     Boolean,
                                        reader:   :private,
                                        as:       :empty
 

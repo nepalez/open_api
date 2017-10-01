@@ -1,6 +1,6 @@
 RSpec.describe OpenAPI::Models::Style do
-  let(:style)     { described_class.new(source, object) }
-  let(:object)    { double to_s: parameter, location: location }
+  let(:style)     { described_class.call(source, parent) }
+  let(:parent)    { double to_s: parameter, location: location }
   let(:parameter) { "path parameter 'id' of GET /users/:id" }
   let(:source)    { "matrix" }
   let(:location)  { OpenAPI::Models::Location.new(loc, double) }
@@ -9,7 +9,7 @@ RSpec.describe OpenAPI::Models::Style do
   subject { style }
 
   it "refers to the described subject" do
-    expect(subject.subject).to eq object
+    expect(subject.parent).to eq parent
   end
 
   context "default for path subject" do

@@ -7,7 +7,7 @@ module OpenAPI::Models
   class MediaTypes < Base
     extend Enumerable
 
-    attr_reader :subject
+    attr_reader :parent
 
     def each
       return @data.values.to_enum unless block_given?
@@ -17,23 +17,23 @@ module OpenAPI::Models
     def [](format)
       @data.fetch format.to_s
     rescue StandardError
-      raise Error, "Media type '#{format}' not specified for #{subject}"
+      raise Error, "Media type '#{format}' not specified for #{parent}"
     end
 
     def schema(value)
       self[value].schema
     end
 
-    def self.call(source, subject)
-      new(source, subject)
+    def self.call(source, parent)
+      new(source, parent)
     end
 
     private
 
-    def initialize(source, subject)
-      @subject = subject
+    def initialize(source, parent)
+      @parent = parent
       @data = Hash(source).each_with_object({}) do |(type, item), obj|
-        obj[type.to_s] = MediaType.new(subject, type, item)
+        obj[type.to_s] = MediaType.new(parent, type, item)
       end
     end
   end

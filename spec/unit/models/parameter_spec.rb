@@ -7,8 +7,8 @@ RSpec.describe OpenAPI::Models::Parameter do
   describe ".new" do
     subject { param }
 
-    it "refers to operation" do
-      expect(subject.operation).to eq parent
+    it "refers to the parent" do
+      expect(subject.parent).to eq parent
     end
 
     it "extacts name" do
@@ -18,7 +18,7 @@ RSpec.describe OpenAPI::Models::Parameter do
     it "extacts a location" do
       expect(subject.location).to be_a OpenAPI::Models::Location
       expect(subject.location).to be_query
-      expect(subject.location.subject).to eq subject
+      expect(subject.location.parent).to eq subject
     end
 
     it "extacts required" do

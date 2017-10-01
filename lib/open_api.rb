@@ -1,5 +1,4 @@
 require "dry-initializer"
-require "json"
 require "json-schema"
 require "yaml"
 require "uri"

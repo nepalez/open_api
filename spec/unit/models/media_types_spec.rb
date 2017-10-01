@@ -1,14 +1,14 @@
 RSpec.describe OpenAPI::Models::MediaTypes do
   let(:data)   { yaml_fixture_file("uber/mapped.yml").dig(*path) }
   let(:path)   { %w[paths /me get responses 200 content] }
-  let(:object) { double to_s: "parameter 'user'" }
-  let(:types)  { described_class.new data, object }
+  let(:parent) { double to_s: "parameter 'user'" }
+  let(:types)  { described_class.call data, parent }
 
-  describe ".new" do
+  describe ".call" do
     subject { types }
 
-    it "refers to its subject" do
-      expect(subject.subject).to eq object
+    it "refers to the parent" do
+      expect(subject.parent).to eq parent
     end
   end
 

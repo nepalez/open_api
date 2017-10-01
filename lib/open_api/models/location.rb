@@ -5,7 +5,7 @@ module OpenAPI::Models
   # @private
   #
   class Location < String
-    attr_reader :subject
+    attr_reader :parent
 
     def self.config
       @config ||= YAML.load_file "config/locations.yml"
@@ -45,16 +45,16 @@ module OpenAPI::Models
       @config["default"]
     end
 
-    def self.call(source, subject)
-      new(source, subject)
+    def self.call(source, parent)
+      new(source, parent)
     end
 
     private
 
-    def initialize(source, subject)
-      @subject = subject
+    def initialize(source, parent)
+      @parent = parent
       @config ||= self.class.config.fetch(source.to_s) do
-        raise Error, "invalid location '#{source}' for #{subject}"
+        raise Error, "invalid location '#{source}' for #{parent}"
       end
       super(source)
     end

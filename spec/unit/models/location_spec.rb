@@ -1,13 +1,13 @@
 RSpec.describe OpenAPI::Models::Location do
-  let(:location) { described_class.new(source, object) }
+  let(:location) { described_class.call(source, parent) }
   let(:source)   { "query" }
-  let(:object)   { double to_s: "GET /users" }
+  let(:parent)   { double to_s: "GET /users" }
 
   describe ".new" do
     subject { location }
 
-    it "refers to its subject instance" do
-      expect(subject.subject).to eq object
+    it "refers to the parent" do
+      expect(subject.parent).to eq parent
     end
 
     context "query" do

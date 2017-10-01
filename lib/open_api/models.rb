@@ -6,6 +6,7 @@ class OpenAPI
   module Models
     require_relative "models/error"
     require_relative "models/base"
+    require_relative "models/boolean"
     require_relative "models/media_type"
     require_relative "models/media_types"
     require_relative "models/request_body"

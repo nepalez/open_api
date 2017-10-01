@@ -1,15 +1,15 @@
 RSpec.describe OpenAPI::Models::RequestBody do
-  let(:object) { double to_s: "POST /pets" }
+  let(:parent) { double to_s: "POST /pets" }
   let(:data)   { yaml_fixture_file("petstore/mapped.yml").dig(*path) }
   let(:path)   { %w[paths /pets post requestBody] }
 
-  let(:body) { described_class.new object, data }
+  let(:body) { described_class.call data, parent }
 
   describe ".new" do
     subject { body }
 
-    it "refers to its subject" do
-      expect(subject.subject).to eq object
+    it "refers to the parent" do
+      expect(subject.parent).to eq parent
     end
 
     it "extracts the requirement" do

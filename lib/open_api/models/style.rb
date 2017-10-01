@@ -5,7 +5,7 @@ module OpenAPI::Models
   # @private
   #
   class Style < String
-    attr_reader :subject, :types
+    attr_reader :parent, :types
 
     def self.config
       @config ||= YAML.load_file("config/styles.yml")
@@ -15,22 +15,22 @@ module OpenAPI::Models
       @explode
     end
 
-    def self.call(source, subject)
-      new(source, subject)
+    def self.call(source, parent)
+      new(source, parent)
     end
 
     private
 
-    def initialize(source, subject)
-      location = subject.location
+    def initialize(source, parent)
+      location = parent.location
       source ||= location.default_style
 
       unless location.styles.include?(source)
-        raise Error, "inacceptable style '#{source}' of #{subject}"
+        raise Error, "inacceptable style '#{source}' of #{parent}"
       end
 
       super(source)
-      @subject = subject
+      @parent = parent
       config   = self.class.config[source]
       @types   = config["types"]
       @explode = config["explode"]
