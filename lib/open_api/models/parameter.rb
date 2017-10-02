@@ -6,19 +6,21 @@ module OpenAPI::Models
   class Parameter < Base
     param  :parent
     option :name,       proc(&:to_s)
-    option :in,         Location,      as: :location
-    option :deprecated, Boolean,       default: -> { false }
-    option :required,   Boolean,       optional: true, reader: :private
-    option :content,    MediaTypes,    optional: true
-    option :schema,     method(:Hash), optional: true
-    option :style,      Style,         optional: true
-    option :allowEmptyValue,           optional: true,
-                                       type:     Boolean,
-                                       reader:   :private,
-                                       as:       :empty
+    option :in,         Location,   as: :location
+    option :deprecated, Boolean,    default: -> { false }
+    option :style,      Style,      optional: true
+    option :required,   Boolean,    optional: true, reader: :private
+    option :content,    MediaTypes, optional: true, reader: :private
+    option :schema,  method(:Hash), optional: true,
+                                    as: :default_schema,
+                                    reader: :private
+    option :allowEmptyValue,        optional: true,
+                                    type:     Boolean,
+                                    reader:   :private,
+                                    as:       :empty
 
-    def find_schema(format)
-      content ? content.schema(format) : schema
+    def schema(format)
+      content ? content.schema(format) : default_schema
     end
 
     def query?

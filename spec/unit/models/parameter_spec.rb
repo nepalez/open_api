@@ -33,10 +33,6 @@ RSpec.describe OpenAPI::Models::Parameter do
       expect(subject).not_to be_empty
     end
 
-    it "extracts schema" do
-      expect(subject.schema).to eq "type" => "integer", "format" => "int32"
-    end
-
     it "tells about location" do
       expect(subject).to     be_query
       expect(subject).not_to be_path
@@ -74,6 +70,14 @@ RSpec.describe OpenAPI::Models::Parameter do
       it "raises OpenAPI::Models::Error" do
         expect { subject }.to raise_error(OpenAPI::Models::Error, /in/)
       end
+    end
+  end
+
+  describe "#schema" do
+    subject { param.schema("text/html") }
+
+    it "extracts a proper schema" do
+      expect(subject).to eq "type" => "integer", "format" => "int32"
     end
   end
 end

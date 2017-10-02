@@ -1,5 +1,5 @@
 RSpec.describe OpenAPI::Models::StatusCode do
-  subject { described_class.new status, double(to_str: "GET /pets") }
+  subject { described_class.call status, double(to_str: "GET /pets") }
 
   context "default code" do
     let(:status) { "default" }

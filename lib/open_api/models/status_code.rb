@@ -7,6 +7,10 @@ module OpenAPI::Models
       block_given? ? yield : true
     end
 
+    def self.call(status, parent)
+      new(status, parent)
+    end
+
     private
 
     def initialize(status, parent)
