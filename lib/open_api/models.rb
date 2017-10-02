@@ -14,6 +14,7 @@ class OpenAPI
     require_relative "models/style"
     require_relative "models/parameter"
     require_relative "models/parameters"
+    require_relative "models/status_code"
     require_relative "models/operation"
     require_relative "models/operations"
   end
