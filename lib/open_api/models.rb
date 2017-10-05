@@ -1,6 +1,9 @@
 class OpenAPI
   #
-  # Namespace for models describing different parts of a schema
+  # Models wrap the OpenAPI schema to an enumerable collection of [Operations]
+  # where every single [Operation] provides methods describing requirements
+  # for different parts of request/responses.
+  #
   # @private
   #
   module Models
@@ -17,5 +20,11 @@ class OpenAPI
     require_relative "models/status_code"
     require_relative "models/operation"
     require_relative "models/operations"
+
+    # @param  [Hash<String, Object>] schema Mapped schema to wrap
+    # @return [OpenAPI::Models::Operations] enumerable collection of operations
+    def self.[](schema)
+      Operations.new(schema)
+    end
   end
 end

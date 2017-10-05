@@ -1,4 +1,4 @@
-module OpenAPI::Mapper
+module OpenAPI::Mappers
   #
   # Shares server definitions to operations
   # Removes servers from both the root, and path items

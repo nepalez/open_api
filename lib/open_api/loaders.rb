@@ -2,7 +2,7 @@ class OpenAPI
   #
   # Methods to load schema from various sources
   #
-  module Loader
+  module Loaders
     #
     # Loads schema from a YAML file
     #

@@ -5,11 +5,11 @@ require "uri"
 
 # Specification-based API
 class OpenAPI
-  require_relative "open_api/loader"
-  require_relative "open_api/mapper"
+  require_relative "open_api/loaders"
+  require_relative "open_api/mappers"
   require_relative "open_api/models"
 
-  extend Loader # load_yml
+  extend Loaders # constructors: load_yml
 
   # @!attribute [r] schema
   # @return [Hash] the original Open API schema
@@ -18,6 +18,7 @@ class OpenAPI
   private
 
   def initialize(schema)
-    @schema = schema
+    @schema     = schema
+    @operations = Models[Mappers[schema]]
   end
 end

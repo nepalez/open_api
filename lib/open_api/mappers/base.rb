@@ -1,4 +1,4 @@
-module OpenAPI::Mapper
+module OpenAPI::Mappers
   #
   # Provides interface for all data mappers that process an original schema
   # @private

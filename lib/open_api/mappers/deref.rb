@@ -1,4 +1,4 @@
-module OpenAPI::Mapper
+module OpenAPI::Mappers
   #
   # Populates the scheme with content of their '$ref' keys.
   # Removes all referred data from components. Leaves only securitySchemes,

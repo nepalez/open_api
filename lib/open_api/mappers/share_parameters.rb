@@ -1,4 +1,4 @@
-module OpenAPI::Mapper
+module OpenAPI::Mappers
   #
   # Moves parameters from path items to operations
   # @private

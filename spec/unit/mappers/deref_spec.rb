@@ -1,4 +1,4 @@
-RSpec.describe OpenAPI::Mapper::Deref do
+RSpec.describe OpenAPI::Mappers::Deref do
   subject { described_class.call source }
 
   shared_examples :successful_mapper do |example|
@@ -14,7 +14,7 @@ RSpec.describe OpenAPI::Mapper::Deref do
     let(:source) { yaml_fixture_file "errors/#{example}.yml" }
 
     it "raises an exception for #{example}" do
-      expect { subject }.to raise_error(OpenAPI::Mapper::Error, message)
+      expect { subject }.to raise_error(OpenAPI::Mappers::Error, message)
     end
   end
 
