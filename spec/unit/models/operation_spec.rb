@@ -31,6 +31,11 @@ RSpec.describe OpenAPI::Models::Operation do
       expect(subject.body).to eq nil
     end
 
+    it "extracts responses" do
+      expect(subject.responses).to be_a OpenAPI::Models::Responses
+      expect(subject.responses.first.status).to match 200
+    end
+
     context "with content" do
       let(:verb) { "post" }
 
