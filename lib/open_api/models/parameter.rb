@@ -19,7 +19,7 @@ module OpenAPI::Models
                                     reader:   :private,
                                     as:       :empty
 
-    def schema(format)
+    def schema(format = nil)
       content ? content.schema(format) : default_schema
     end
 

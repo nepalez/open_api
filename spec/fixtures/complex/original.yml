@@ -62,6 +62,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Pet'
+          headers:
+            'X-application':
+              required: true
+              schema:
+                type: string
         default:
           description: unexpected error
           content:

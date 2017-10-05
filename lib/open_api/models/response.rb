@@ -6,7 +6,7 @@ module OpenAPI::Models
   class Response < Base
     param  :parent
     param  :status,  StatusCode
-    # option :headers, Headers,    optional: true
+    option :headers, Headers,    optional: true
     option :content, MediaTypes, optional: true
 
     def order

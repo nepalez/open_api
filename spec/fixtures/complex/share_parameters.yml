@@ -75,6 +75,11 @@ paths:
                       id:
                         type: integer
                         format: int64
+          headers:
+            'X-application':
+              required: true
+              schema:
+                type: string
         default:
           description: unexpected error
           content:

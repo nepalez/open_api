@@ -4,8 +4,6 @@ module OpenAPI::Models
   # @private
   #
   class Operations
-    require_relative "operation"
-
     include Enumerable
 
     def each

@@ -4,8 +4,6 @@ module OpenAPI::Models
   # @private
   #
   class Parameters
-    require_relative "parameter"
-
     include Enumerable
 
     attr_reader :parent
